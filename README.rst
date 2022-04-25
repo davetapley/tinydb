@@ -108,6 +108,16 @@ Using Middlewares
     >>> from tinydb.middlewares import CachingMiddleware
     >>> db = TinyDB('/path/to/db.json', storage=CachingMiddleware(JSONStorage))
 
+Use with `unittest`
+=================
+
+.. code-block:: python
+
+    def test_db(self):
+    with tempfile.NamedTemporaryFile() as file:
+        db = TinyDB(file.name)
+        self.assertEqual(len(db.all()), 0)
+        db.close()
 
 Contributing
 ************
